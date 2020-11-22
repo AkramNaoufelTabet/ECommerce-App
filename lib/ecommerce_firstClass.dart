@@ -1,34 +1,34 @@
+
+
 import 'package:flutter/material.dart';
+
+import 'constant.dart';
+import 'routs.dart';
+import 'screens/splash/splash_screen.dart';
 
 class MyApp extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'E-commerce app ',
-      home: Homescreen()
+      theme: ThemeData(
+        scaffoldBackgroundColor: Colors.white,
+        fontFamily: 'Muli',
+        textTheme: TextTheme(
+          bodyText1:TextStyle(color: kTextColor),
+          bodyText2: TextStyle(color: kTextColor) )
+      ),
+      //home: SplashScreen()
+      initialRoute: SplashScreen.routename,
+      routes: routes,
     );
     throw UnimplementedError();
   }
 
 }
 
-class Homescreen extends StatefulWidget {
-  @override
-  State<StatefulWidget> createState() {
-    return Homescreenstate();
-    throw UnimplementedError();
-  }
-}
 
-class Homescreenstate extends State<Homescreen> {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-
-      );
-    throw UnimplementedError();
-  }
-}
 
 
 
