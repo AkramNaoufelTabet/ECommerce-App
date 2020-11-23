@@ -32,7 +32,7 @@ class DefaultButton extends StatelessWidget {
                                       child: currentpage==2 ? SizedBox.shrink() :  FlatButton(onPressed: press1,
                                       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
                       color:Colors.grey[200],
-                       child: Text(text1,style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold)),),
+                       child: Text(text1,style: TextStyle(fontFamily: "Roboto",color: Colors.black,fontWeight: FontWeight.bold)),),
                     ),
                      Padding(
                        padding: const EdgeInsets.only(top:10.0),

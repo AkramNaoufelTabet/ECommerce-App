@@ -12,9 +12,13 @@ class MyApp extends StatelessWidget{
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'E-commerce app ',
+      
       theme: ThemeData(
         scaffoldBackgroundColor: Colors.white,
-        fontFamily: 'Muli',
+        fontFamily: 'Roboto',
+        appBarTheme: AppBarTheme(
+          color: Colors.blueGrey[900]
+        ),
         textTheme: TextTheme(
           bodyText1:TextStyle(color: kTextColor),
           bodyText2: TextStyle(color: kTextColor) )

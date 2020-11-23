@@ -1,5 +1,6 @@
 import 'package:ecommerce_app/components/default_button.dart';
 import 'package:ecommerce_app/constant.dart';
+import 'package:ecommerce_app/screens/ChooseBetween/registerorsign_in.dart';
 import 'package:ecommerce_app/screens/sign_in/sign_in.dart';
 import 'package:ecommerce_app/size_config.dart';
 import 'package:flutter/material.dart';
@@ -67,7 +68,7 @@ int Currentpage=0;
                   _controller.nextPage(duration: Duration(milliseconds: 300), curve: kCurve);
                   
                 },text2: "Connect",press2: (){
-                  Navigator.pushNamed(context, SignInScreen.routename);
+                  Navigator.pushNamed(context, RegisterOrSignInScreen.routename);
                 },currentpage: Currentpage, )
               ],
             ),

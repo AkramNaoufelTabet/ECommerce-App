@@ -21,6 +21,8 @@ environment:
   sdk: ">=2.7.0 <3.0.0"
 
 dependencies:
+  passwordfield: ^0.0.82
+  hexcolor: ^1.0.4
   flutter:
     sdk: flutter
 
@@ -51,7 +53,14 @@ flutter:
         - asset: assets/fonts/muli/Muli-Bold.ttf
           weight: 700
         - asset: assets/fonts/muli/Muli-Light.ttf
-          weight: 300
+          weight: 300      
+    - family: Roboto
+      fonts:
+        - asset: assets/fonts/muli/Roboto-Regular.ttf
+        - asset: assets/fonts/muli/Roboto-Bold.ttf
+          weight: 700
+        - asset: assets/fonts/muli/Roboto-Light.ttf
+          weight: 300    
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
