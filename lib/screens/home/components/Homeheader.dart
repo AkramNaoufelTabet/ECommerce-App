@@ -12,20 +12,21 @@ class HomeHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      
       width: SizeConfig.screenWidth,
       height: 60,
-      color: Colors.deepOrangeAccent.withOpacity(0.1),
+      color: kPrimaryColor,
       child: Padding(
         padding: 
-        EdgeInsets.symmetric(horizontal:getProportionateScreenWidth(20) ),
+        EdgeInsets.symmetric(horizontal:getProportionateScreenWidth(12) ),
       
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
              SearchField(),
-               IconBtnwithCounter(svgsrc: "assets/icons/Cart Icon.svg", press: (){
+               //IconBtnwithCounter(svgsrc: "assets/icons/Cart Icon.svg", press: (){
                
-             }),
+             //}),
              IconBtnwithCounter(
                svgsrc: "assets/icons/Bell.svg",
                numOfItems: 3,

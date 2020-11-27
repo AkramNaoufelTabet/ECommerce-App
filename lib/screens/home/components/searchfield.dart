@@ -10,11 +10,11 @@ class SearchField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: SizeConfig.screenWidth*0.6,
-      //height: 50,
+      width: SizeConfig.screenWidth*0.8,
+      height: 40,
       decoration: BoxDecoration(
-        color: kSecondaryColor.withOpacity(0.1),
-        borderRadius: BorderRadius.circular(12)
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(24)
       ),
       child: TextField(
         textInputAction: TextInputAction.done,

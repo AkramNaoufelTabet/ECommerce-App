@@ -1,15 +1,32 @@
 
+
 import 'package:ecommerce_app/constant.dart';
+import 'package:ecommerce_app/screens/home/components/sectio_Title.dart';
+import 'package:ecommerce_app/screens/home/models/product.dart';
 import 'package:ecommerce_app/size_config.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+import 'package:flutter/rendering.dart';
+import 'package:hexcolor/hexcolor.dart';
 
-import 'Homeheader.dart';
+import 'iconbtns.dart';
 
 class Body extends StatelessWidget {
+   final _controller = new PageController();
+  List<Map<String,dynamic>> IcnBtn =[
+    //{"color":Colors.white,"icon":Icons.pause,"press":(){}},
+    {"color":Colors.red[900],"icon":Icons.pause,"press":(){}},
+    {"color":Colors.amberAccent,"icon":Icons.pause,"press":(){}},
+    {"color":Colors.tealAccent[400],"icon":Icons.pause,"press":(){}},
+    {"color":Colors.pinkAccent,"icon":Icons.pause,"press":(){}},
+    {"color":Colors.lightGreenAccent[700],"icon":Icons.pause,"press":(){}},
+
+
+  ];
   @override
   
+  
   static const IconData grid_view = IconData(0xe79c, fontFamily: 'MaterialIcons');
+  
   Widget build(BuildContext context) {
     return SafeArea
     (
@@ -18,16 +35,138 @@ class Body extends StatelessWidget {
          children: <Widget>[
            
 
-         HomeHeader(),
+         IconButtons(IcnBtn: IcnBtn),
+         
          SizedBox(height:getProportionateScreenWidth(10) ),
          BuildSlashImages(),
-   
+         Padding(
+           padding: const EdgeInsets.symmetric(horizontal: 12),
+           child: Container(
+            
+             
+             width: double.infinity,
+             height: 240,
+             decoration: BoxDecoration(
+               color: HexColor("#F3EEEE"),
+                borderRadius: BorderRadius.all(Radius.circular(20)),
+                   boxShadow: [
+      BoxShadow(
+        color: Colors.grey.withOpacity(0.5),
+        spreadRadius: 5,
+        blurRadius: 7,
+        offset: Offset(0, 3), // changes position of shadow
+      ),
+    ],
+
+
+             ),
+             child: Column(
+               children: <Widget>[
+                 Padding(
+                   padding:  EdgeInsets.symmetric(horizontal: 12,vertical: 8),
+                   child: SectionTitle(title: "New arrival product ",press: (){},),
+                 ),
+                 SizedBox(height: getProportionateScreenWidth(10),),
+                 SingleChildScrollView(
+                   scrollDirection: Axis.horizontal,
+                                    child: Row(
+                                     // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                     children: <Widget>[
+                       ...List.generate(demoProducts.length, (index) => ProcudtCard(product: demoProducts[index]))
+                     ],
+                   ),
+                 )
+               ],
+             )),
+         )
+         
+ 
+
+          
 
        ],),
      )  , 
     );
   }
 }
+
+class ProcudtCard extends StatelessWidget {
+  const ProcudtCard({
+    Key key, this.aspectRatio=0.7,
+     this.width=120, 
+      @required this.product,
+  }) : super(key: key);
+  final double aspectRatio,width;
+  final Product product;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal:getProportionateScreenWidth(10)),
+      child: SizedBox(
+        width: getProportionateScreenWidth(width),
+                         child: AspectRatio(
+          aspectRatio: aspectRatio,
+          child: Container(
+            
+               decoration: BoxDecoration(
+                 color: Colors.white,
+                 borderRadius: BorderRadius.circular(20)
+
+               ) ,
+               child: Column(
+      
+                 crossAxisAlignment: CrossAxisAlignment.center,
+                 children: <Widget>[
+                   Image.asset(product.images[0],
+                   width: 100,
+                   height: 90,
+                   
+                   ),
+
+                    Padding(
+                      padding: const EdgeInsets.only(top:10.0),
+                      child: Center(
+                        child: Text(product.title,
+                           style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold,fontSize:12 ),
+                           ),
+                      ),
+                    ), 
+                     Padding(
+                       padding:  EdgeInsets.symmetric(horizontal: 10  ),
+                       child: Row(
+                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                         children: <Widget>[
+                             Text("\$${product.price}",
+                             style: TextStyle(color: kPrimaryColor,fontSize: 12,fontWeight: FontWeight.bold),
+                             ),
+
+                             IconButton(  icon:  Icon(Icons.favorite,color: kPrimaryColor,  ), 
+                             onPressed: (){
+                               
+                             },
+                             
+                             )
+
+                       ],
+                       
+                       
+                       ),
+                     )
+
+                 ],
+               ) ,
+          ),
+          
+          ),
+      ),
+    );
+  }
+}
+
+
+
+
 
 class BuildSlashImages extends StatefulWidget {
   @override
@@ -56,7 +195,7 @@ class _BuildSlashImagesState extends State<BuildSlashImages> {
       children: <Widget>[
         Container(
           width: double.infinity,
-          height: 500,
+          height: 190,
           child: PageView.builder(
             controller: _controller,
               onPageChanged:(value) {
@@ -80,7 +219,7 @@ class _BuildSlashImagesState extends State<BuildSlashImages> {
                   ),
                 ),
                       
-                      SizedBox(height: SizeConfig.screenHeight*0.04,),
+                      SizedBox(height: SizeConfig.screenHeight*0.02,),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: List.generate(srcimg.length, (index) => buildDot(index)),
