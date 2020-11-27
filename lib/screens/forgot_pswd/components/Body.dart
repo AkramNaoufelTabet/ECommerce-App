@@ -5,6 +5,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
 import '../../../constant.dart';
+import '../fogot_pswd_pswd.dart';
 
 
 class Body extends StatelessWidget {
@@ -21,7 +22,10 @@ class Body extends StatelessWidget {
             style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold,fontSize: getProportionateScreenWidth(28)),
             
             ),
-            Text("Please enter your e-mail and we will send\nyou a link to return your account",textAlign: TextAlign.center,),
+            Padding(
+              padding:   EdgeInsets.symmetric(horizontal: 24,vertical: 16),
+              child: Text("Please enter your e-mail to retreive your password\nNext,check your inbox to enter your new password",textAlign: TextAlign.center,),
+            ),
             SizedBox(height: getProportionateScreenHeight(50),),
             ForgotPswdForm(),
             
@@ -80,13 +84,16 @@ class _ForgotPswdFormState extends State<ForgotPswdForm> {
                               error=kEmailNullError;
                              
                             });
+                            return "";
                           }else if(!emailValidatorRegExp.hasMatch(eController.text) ){
                             setState(() {
                               isEvalid=false;
                               error=kInvalidEmailError;
                            
                             });
+                            return "";
                           }
+                          return null;
                          
                         },
               keyboardType: TextInputType.emailAddress,
@@ -122,6 +129,7 @@ SizedBox(
                                                if(Mformkey.currentState.validate()){
   
                                                Mformkey.currentState.save();
+                                               Navigator.pushNamed(context, ForgotPswdPswd.routename);
   
                                              }
   

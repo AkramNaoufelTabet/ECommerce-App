@@ -82,7 +82,7 @@ int Currentpage=0;
  
 
   AnimatedContainer buildDot(int index) {
-    return AnimatedContainer(
+    return AnimatedContainer( 
       width:Currentpage==index ? 15 : 8,
       height: 8,
       margin: EdgeInsets.only(right:5),

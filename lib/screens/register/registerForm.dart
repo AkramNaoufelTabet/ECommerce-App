@@ -3,6 +3,7 @@ import 'package:ecommerce_app/screens/Login_success/login_success.dart';
 import 'package:ecommerce_app/screens/sign_in/sign_in.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import '../../constant.dart';
 import '../../size_config.dart';
@@ -25,6 +26,7 @@ class _RegisterFormState extends State<RegisterForm> {
   Widget build(BuildContext context) {
     return Form(
       key: Mformkey,
+     autovalidate: false,
      
       child: Column(
         
@@ -127,9 +129,14 @@ class _RegisterFormState extends State<RegisterForm> {
     super.dispose();
   }
 bool _showPassword = false;
+ bool _autoValidate = false;
+  String _userNameErrorText;
+  bool _userNameError = false;
  Theme buildEmailForm(BuildContext context) {
     return Theme(
-          data: Theme.of(context).copyWith(primaryColor:kPrimaryColor ),
+          data: ( eController.text.isNotEmpty && emailValidatorRegExp.hasMatch(eController.text)) ?
+          Theme.of(context).copyWith(primaryColor: Colors.greenAccent):
+          Theme.of(context).copyWith(primaryColor:kPrimaryColor ),
                     child: TextFormField(
                     
                       controller: eController,
@@ -145,7 +152,6 @@ bool _showPassword = false;
                         }if(emailValidatorRegExp.hasMatch(eController.text) ){
                           setState(() {
                             isEvalid=true;
-                            
                             error="";
                             
                           });
@@ -160,13 +166,16 @@ bool _showPassword = false;
                       
                           });
                           return "";
-                        }else if(!emailValidatorRegExp.hasMatch(eController.text) ){
+                          
+                        }
+                          else if(!emailValidatorRegExp.hasMatch(eController.text) ){
                           setState(() {
                             isEvalid=false;
                             error=kInvalidEmailError;
                           });
                           return "";
                         }else if(pController.text.isEmpty){
+                          
                           setState(() {
                             error=kPassNullError;
                           });
@@ -182,11 +191,16 @@ bool _showPassword = false;
                        return null;
                       },
             keyboardType: TextInputType.emailAddress,
+            textInputAction: TextInputAction.next,
             decoration: InputDecoration(
+              
+   
               labelText: "Email",
               icon: Icon(Icons.email,size: 28,),
               hintText: "Enter your email",
               floatingLabelBehavior: FloatingLabelBehavior.always,
+               
+        
                 suffixIcon: IconButton(icon: Icon(Icons.clear), onPressed: (){
                 setState(() {
                   eController.text="";
@@ -201,7 +215,9 @@ bool _showPassword = false;
 
   Theme buildPasswordForm(BuildContext context) {
     return Theme(
-          data: Theme.of(context).copyWith(primaryColor:kPrimaryColor ),
+          data: (pController.text.isNotEmpty && pController.text.length>=6 && pController.text.length<20 ) ?  
+          Theme.of(context).copyWith(primaryColor: Colors.greenAccent) : 
+          Theme.of(context).copyWith(primaryColor:kPrimaryColor ),
                     child: TextFormField(
                       controller: pController,
                       onSaved: (newvalue){
@@ -209,13 +225,15 @@ bool _showPassword = false;
                       },
                       onChanged: (value){
                         if(pController.text.isNotEmpty){
+                          
                           setState(() {
                             error="";
+                            
                           });
                           
                           
                           
-                        } if(pController.text.length>=6 && pController.text.length<20 ){
+                        } if(pController.text.trim().length>=6 && pController.text.trim().length<20 ){
                           setState(() {
                             error="";
                           });
@@ -229,7 +247,7 @@ bool _showPassword = false;
                             error=kPassNullError;
                           });
                           return "";
-                        }else if(pController.text.length<6 && email.isNotEmpty && isEvalid){
+                        }else if(pController.text.trim().length<6 && email.isNotEmpty && isEvalid){
                           setState(() {
                             error=kShortPassError;
                             

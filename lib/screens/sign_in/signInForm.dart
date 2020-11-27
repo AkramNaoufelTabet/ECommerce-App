@@ -1,5 +1,6 @@
 import 'package:ecommerce_app/components/form_error.dart';
 import 'package:ecommerce_app/screens/forgot_pswd/forgot_pswd.dart';
+import 'package:ecommerce_app/screens/home/home_screen.dart';
 import 'package:ecommerce_app/screens/register/register.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -42,9 +43,10 @@ class _SignInFormState extends State<SignInForm> {
                                         padding: const EdgeInsets.only(left:2.0,right:2.0),
                                         child: FlatButton(onPressed: (
                                         ){
-                                           if(Mformkey.currentState.validate()){
-                                           Mformkey.currentState.save();
-                                         }
+                                          // if(Mformkey.currentState.validate()){
+                                          // Mformkey.currentState.save();
+                                         //}
+                                         Navigator.pushNamed(context, HomeScreen.routename);
                                         },
                                         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(6)),
                       color:kPrimaryColor,

@@ -1,3 +1,4 @@
+import 'package:ecommerce_app/size_config.dart';
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
 
@@ -25,3 +26,18 @@ const String kMatchPassError = "Passwords don't match";
 const String kNamelNullError = "Please Enter your name";
 const String kPhoneNumberNullError = "Please Enter your phone number";
 const String kAddressNullError = "Please Enter your address";
+
+final otpInputDecoration = InputDecoration(
+  contentPadding:
+      EdgeInsets.symmetric(vertical: getProportionateScreenWidth(15)),
+  border: outlineInputBorder(),
+  focusedBorder: outlineInputBorder(),
+  enabledBorder: outlineInputBorder(),
+);
+
+OutlineInputBorder outlineInputBorder() {
+  return OutlineInputBorder(
+    borderRadius: BorderRadius.circular(getProportionateScreenWidth(6)),
+    borderSide: BorderSide(color: kPrimaryColor),
+  );
+}
