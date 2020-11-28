@@ -5,8 +5,9 @@ class Product {
   final String title, description;
   final List<String> images;
   final List<Color> colors;
-  final double rating, price;
-  final bool isFavourite, isPopular;
+  final double rating, price,reduction;
+  final bool  isPopular;
+  bool isFavourite;
 
   Product({
     @required this.id,
@@ -17,6 +18,7 @@ class Product {
     this.isPopular = false,
     @required this.title,
     @required this.price,
+     this.reduction,
     @required this.description,
   });
 }
@@ -40,6 +42,7 @@ List<Product> demoProducts = [
     ],
     title: "Wirelless earphone",
     price: 16.74,
+    reduction: 16,
     description: description,
     rating: 4.8,
     isFavourite: true,
@@ -59,6 +62,7 @@ List<Product> demoProducts = [
     title: "Backpack laptop",
     price: 50.5,
     description: description,
+    reduction: 0,
     rating: 4.1,
     isPopular: true,
   ),
@@ -75,6 +79,7 @@ List<Product> demoProducts = [
     ],
     title: "Apple new watch 2020",
     price: 81.55,
+    reduction: 40,
     description: description,
     rating: 4.1,
     isFavourite: true,

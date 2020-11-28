@@ -1,7 +1,7 @@
 import 'package:ecommerce_app/constant.dart';
 import 'package:ecommerce_app/screens/home/components/body.dart';
+import 'package:ecommerce_app/screens/home/components/navBar.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 
 import 'components/Homeheader.dart';
 class HomeScreen extends StatelessWidget {
@@ -21,7 +21,8 @@ class HomeScreen extends StatelessWidget {
         ],
       ),
       body: Body(),
-      
+         bottomNavigationBar: BottomNavBar()
     );
   }
 }
+

@@ -23,13 +23,14 @@ class SectionTitle extends StatelessWidget {
           style: TextStyle(
             fontSize: getProportionateScreenWidth(12),
             color: kPrimaryColor,
+            fontWeight: FontWeight.bold
           ),
         ),
         GestureDetector(
           onTap: press,
           child: Text(
             "View More >>",
-            style: TextStyle(color:kPrimaryColor,fontSize: getProportionateScreenWidth(12)),
+            style: TextStyle(color:kPrimaryColor,fontSize: getProportionateScreenWidth(12),fontWeight: FontWeight.bold),
           ),
         ),
       ],
