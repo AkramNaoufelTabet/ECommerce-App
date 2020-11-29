@@ -22,6 +22,10 @@ class Product {
     @required this.description,
   });
 }
+List<Product> favProducts=[
+
+ 
+];
 
 // Our demo Products
 
@@ -45,7 +49,7 @@ List<Product> demoProducts = [
     reduction: 16,
     description: description,
     rating: 4.8,
-    isFavourite: true,
+    
     isPopular: true,
   ),
   Product(
@@ -82,7 +86,7 @@ List<Product> demoProducts = [
     reduction: 40,
     description: description,
     rating: 4.1,
-    isFavourite: true,
+    
     isPopular: true,
   ),
  

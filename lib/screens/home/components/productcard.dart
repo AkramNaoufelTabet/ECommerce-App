@@ -120,7 +120,15 @@ class _FavoriteIconState extends State<FavoriteIcon> {
     Icon(Icons.favorite_border,color: kPrimaryColor,), 
     onPressed: (){
       setState(() {
+
+        if(widget.product.isFavourite==false){
+        favProducts.add(widget.product);
+        }else{
+          favProducts.remove(widget.product);
+        }
         widget.product.isFavourite=!widget.product.isFavourite;
+        
+        
       });
     },
 

@@ -1,4 +1,5 @@
 import 'package:ecommerce_app/constant.dart';
+import 'package:ecommerce_app/screens/home/wish_list/wish_list.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -15,15 +16,21 @@ class BottomNavBar extends StatefulWidget {
 class _BottomNavBarState extends State<BottomNavBar> {
   @override
   int numOfItems=3;
-  int currentindex;
+  int _currentindex=0;
   Widget build(BuildContext context) {
     return BottomNavigationBar(
-      currentIndex: 0,
+      onTap: (int index) {
+          setState(() {
+            _currentindex= index;
+          });
+        },
+      currentIndex:_currentindex ,
       unselectedItemColor: kSecondaryColor,
 
         items:  <BottomNavigationBarItem>[
+          
      BottomNavigationBarItem(
-
+       
        icon: Icon(Icons.home,size: getProportionateScreenWidth(30),),
        
        label: "",

@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:hexcolor/hexcolor.dart';
 
+import 'Homeheader.dart';
 import 'iconbtns.dart';
 import 'productcard.dart';
 import 'slashImages.dart';
@@ -31,63 +32,72 @@ class Body extends StatelessWidget {
   static const IconData grid_view = IconData(0xe79c, fontFamily: 'MaterialIcons');
   
   Widget build(BuildContext context) {
-    return SafeArea
-    (
-     child: SingleChildScrollView(
-       child: Column(
-         children: <Widget>[
+    return Scaffold(
+        appBar: AppBar(
+        backgroundColor: kPrimaryColor,
+        actions: <Widget>[
+        HomeHeader(),
+
+        ],
+      ),
+          body: SafeArea
+      (
+       child: SingleChildScrollView(
+         child: Column(
+           children: <Widget>[
+             
+
+           IconButtons(IcnBtn: IcnBtn),
            
-
-         IconButtons(IcnBtn: IcnBtn),
-         
-         SizedBox(height:getProportionateScreenWidth(10) ),
-         BuildSlashImages(),
-         BigCard(title: "New arrival product",
-         press:(){} ,
-         lp: demoProducts,
-         ),
-         Padding(
-           padding:  EdgeInsets.symmetric(horizontal: 12,vertical: 10),
-           child: SectionTitle(title: "Special for you",press:(){}),
-         ),
-         SingleChildScrollView(
-           scrollDirection: Axis.horizontal,
-                    child: Row(
-             children: <Widget>[
-
-               SpecialOfferCard(image: "assets/images/Image Banner 2.png",
-               category: "Smartphone",
-               numOfbrand: 24,
-               press: (){
-                 
-               },
-               
-               ),
-                 SpecialOfferCard(image: "assets/images/Image Banner 3.png",
-               category: "Fashion",
-               numOfbrand: 36,
-               press: (){
-                 
-               },
-               
-               
-               ),
-               SizedBox(width: getProportionateScreenWidth(12),)
-             ],
+           SizedBox(height:getProportionateScreenWidth(10) ),
+           BuildSlashImages(),
+           BigCard(title: "New arrival product",
+           press:(){} ,
+           lp: demoProducts,
            ),
-         ),
-         Padding(
-           padding:  EdgeInsets.symmetric(vertical: 12),
-           child: BigCard(title: "Weekly offers", press: (){}, lp: demoProducts),
-         ),
-         
-         
+           Padding(
+             padding:  EdgeInsets.symmetric(horizontal: 12,vertical: 10),
+             child: SectionTitle(title: "Special for you",press:(){}),
+           ),
+           SingleChildScrollView(
+             scrollDirection: Axis.horizontal,
+                      child: Row(
+               children: <Widget>[
+
+                 SpecialOfferCard(image: "assets/images/Image Banner 2.png",
+                 category: "Smartphone",
+                 numOfbrand: 24,
+                 press: (){
+                   
+                 },
+                 
+                 ),
+                   SpecialOfferCard(image: "assets/images/Image Banner 3.png",
+                 category: "Fashion",
+                 numOfbrand: 36,
+                 press: (){
+                   
+                 },
+                 
+                 
+                 ),
+                 SizedBox(width: getProportionateScreenWidth(12),)
+               ],
+             ),
+           ),
+           Padding(
+             padding:  EdgeInsets.symmetric(vertical: 12),
+             child: BigCard(title: "Weekly offers", press: (){}, lp: demoProducts),
+           ),
+           
+           
  
 
-          
+            
 
-       ],),
-     )  , 
+         ],),
+       )  , 
+      ),
     );
   }
 }
