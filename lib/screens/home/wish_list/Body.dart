@@ -70,8 +70,15 @@ class WishListCart extends StatefulWidget {
 }
 
 class _WishListCartState extends State<WishListCart> {
+  
+  
+
   @override
   Widget build(BuildContext context) {
+    double oldPrice=widget.product.price;
+    double reduction=widget.product.reduction;
+    double newPrice=double.parse((oldPrice-oldPrice*reduction/100).toStringAsFixed(2));
+// 12.34 ;
     return Padding(
       padding: const EdgeInsets.only(left: 12,right: 12,top: 12,bottom: 12),
       child: Container(
@@ -130,7 +137,7 @@ class _WishListCartState extends State<WishListCart> {
                            )
                          ),
                          child: Center(
-                           child: Text("-${widget.product.reduction}%" ,
+                           child: Text("-${reduction}%" ,
                            style: TextStyle(color: Colors.white,fontSize: 10,fontWeight: FontWeight.bold),
                            ),
                          ),
@@ -163,19 +170,20 @@ class _WishListCartState extends State<WishListCart> {
                                            ),
 
                                            SizedBox(height: getProportionateScreenWidth(32),),
-                                            Text.rich(
+                                            if (widget.product.reduction>0)
+    Text.rich(
                                          TextSpan( 
                                                   children: [
 
                                                  TextSpan(
-                                                   text:"\$3.43",style: TextStyle(color: kSecondaryColor,
+                                                   text:"\$${oldPrice}",style: TextStyle(color: kSecondaryColor,
                                                   decoration: TextDecoration.lineThrough
                                                   ),
                                                  ),   
                                                  
                                                   
                                               TextSpan(
-                                                      text:"      Reduction of 20%",
+                                                      text:"   Reduction of ${reduction}%",
                                              style: TextStyle(color: kPrimaryColor,fontWeight: FontWeight.bold
                                               )
                                              ),
@@ -183,18 +191,20 @@ class _WishListCartState extends State<WishListCart> {
                                                )
                                                                                  
                                                ),
+                                            
+                                        
                                            
                                            Row(
                                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                              
                                              children: [
-                                               Text("\$2.74",
+                                               Text("\$${newPrice}",
                                                style: TextStyle(color: kPrimaryColor,fontWeight: FontWeight.bold,
                                                fontSize: 18
                                                ),
                                                ),
 
-                                               SizedBox(width: getProportionateScreenWidth(88),),
+                                               SizedBox(width: getProportionateScreenWidth(80),),
 
                                                FlatButton(onPressed: (
                                             ){

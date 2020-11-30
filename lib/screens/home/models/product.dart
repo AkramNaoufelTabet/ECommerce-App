@@ -64,7 +64,7 @@ List<Product> demoProducts = [
       Colors.white,
     ],
     title: "Backpack laptop",
-    price: 50.5,
+    price: 50.55,
     description: description,
     reduction: 0,
     rating: 4.1,
