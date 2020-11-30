@@ -14,10 +14,11 @@ class Body extends StatelessWidget {
     return SafeArea(
 
       
-        child:ListView.builder(
+        child: ListView.builder(
           itemCount: favProducts.length,
-          itemBuilder:(BuildContext context,int index)=>
-           BigCard(title: "null", press:(){},  lp: favProducts,index: index,)
+          itemBuilder:(BuildContext context,int index)=> 
+           BigCard(title: "null", press:(){},  lp: favProducts,index: index,)  
+           
           
           
           )
@@ -95,145 +96,153 @@ class _WishListCartState extends State<WishListCart> {
         child: Padding(
           padding:  EdgeInsets.symmetric(horizontal: getProportionateScreenWidth(10),
           vertical: getProportionateScreenWidth(10) ),
-          child: Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-                       Stack(
-                         children: [
-                           Container(
+          child: Stack(
+            overflow: Overflow.visible,
+            children: [
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                           Stack(
+                             children: [
+                               Container(
 
-                              decoration: BoxDecoration(
-                                 color: Colors.white,
-                             borderRadius: BorderRadius.circular(12)
-                              ),
-                               child:  Image.asset(widget.product.images[0],
-                               width: 100,
-                               height: 120,
-                               
-                               ),
-                            ),
-                                            if(widget.product.reduction>0)
-                 Positioned(
-                   child: Container(
-                     width: getProportionateScreenWidth(32),
-                     height:getProportionateScreenWidth(20),
-                     decoration: BoxDecoration(
-                       color: kPrimaryColor,
-                       borderRadius: BorderRadius.only(topLeft: Radius.circular(12),
-                       topRight: Radius.circular(6),
-                       bottomLeft: Radius.circular(0),
-                       bottomRight: Radius.circular(6)
-                       )
-                     ),
-                     child: Center(
-                       child: Text("-${widget.product.reduction}%" ,
-                       style: TextStyle(color: Colors.white,fontSize: 10,fontWeight: FontWeight.bold),
-                       ),
-                     ),
-                   )
-                   
-                   
-                   
-                   )
-                         ],
-                       ),
-                          Padding(
-                            padding:  EdgeInsets.only(left:getProportionateScreenWidth(12)),
-                            child: Column(
-                              
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                               children: [
-                                  Stack(
-                                    overflow: Overflow.visible,
-                                    children: [
-                                     
-                                          Text(widget.product.title,
-                                                 style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold,fontSize:18 ),
-                                                 ),
-                                                  Positioned(
-                                                   top: -20,
-                                                   right: -100,
-                                                   child: IconButton(icon: Icon(Icons.clear,color:kPrimaryColor), onPressed:(){
-                                                      
-                                                     setState(() {
-                                                       Scaffold.of(context).showSnackBar(SnackBar(content: Text('hey')));
-                                                       
-                                                     });
-                                                   }))
-                                                
-                                       
-                                    ],
+                                  decoration: BoxDecoration(
+                                     color: Colors.white,
+                                 borderRadius: BorderRadius.circular(12)
                                   ),
-                                 
+                                   child:  Image.asset(widget.product.images[0],
+                                   width: 100,
+                                   height: 120,
+                                   
+                                   ),
+                                ),
+                                                if(widget.product.reduction>0)
+                     Positioned(
+                       child: Container(
+                         width: getProportionateScreenWidth(32),
+                         height:getProportionateScreenWidth(20),
+                         decoration: BoxDecoration(
+                           color: kPrimaryColor,
+                           borderRadius: BorderRadius.only(topLeft: Radius.circular(12),
+                           topRight: Radius.circular(6),
+                           bottomLeft: Radius.circular(0),
+                           bottomRight: Radius.circular(6)
+                           )
+                         ),
+                         child: Center(
+                           child: Text("-${widget.product.reduction}%" ,
+                           style: TextStyle(color: Colors.white,fontSize: 10,fontWeight: FontWeight.bold),
+                           ),
+                         ),
+                       )
+                       
+                       
+                       
+                       )
+                             ],
+                           ),
+                              Padding(
+                                padding:  EdgeInsets.only(left:getProportionateScreenWidth(12)),
+                                child: Column(
+                                  
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                   children: [
+                                    
+                                         
+                                              Text(widget.product.title,
+                                                     style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold,fontSize:18 ),
+                                                     ),
+                                                    
+                                                    
+                                           
+                                       
+                                     
 
-                                       Text("Quelques details....",maxLines: 3,
-                                       style: TextStyle(color: Colors.black87,),
-                                       ),
+                                           Text("Quelques details....",maxLines: 3,
+                                           style: TextStyle(color: Colors.black87,),
+                                           ),
 
-                                       SizedBox(height: getProportionateScreenWidth(32),),
-                                        Text.rich(
-                                     TextSpan( 
-                                              children: [
+                                           SizedBox(height: getProportionateScreenWidth(32),),
+                                            Text.rich(
+                                         TextSpan( 
+                                                  children: [
 
-                                             TextSpan(
-                                               text:"\$3.43",style: TextStyle(color: kSecondaryColor,
-                                              decoration: TextDecoration.lineThrough
-                                              ),
-                                             ),   
+                                                 TextSpan(
+                                                   text:"\$3.43",style: TextStyle(color: kSecondaryColor,
+                                                  decoration: TextDecoration.lineThrough
+                                                  ),
+                                                 ),   
+                                                 
+                                                  
+                                              TextSpan(
+                                                      text:"      Reduction of 20%",
+                                             style: TextStyle(color: kPrimaryColor,fontWeight: FontWeight.bold
+                                              )
+                                             ),
+                                                  ]
+                                               )
+                                                                                 
+                                               ),
+                                           
+                                           Row(
+                                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                              
+                                             children: [
+                                               Text("\$2.74",
+                                               style: TextStyle(color: kPrimaryColor,fontWeight: FontWeight.bold,
+                                               fontSize: 18
+                                               ),
+                                               ),
+
+                                               SizedBox(width: getProportionateScreenWidth(88),),
+
+                                               FlatButton(onPressed: (
+                                            ){
+                                              // if(Mformkey.currentState.validate()){
+                                              // Mformkey.currentState.save();
+                                             //}
+                                             
+                                            },
+                                            height:28 ,
+                                             
+                                            shape: RoundedRectangleBorder(
+                                              borderRadius: BorderRadius.circular(16)
                                               
-                                          TextSpan(
-                                                  text:"      Reduction of 20%",
-                                         style: TextStyle(color: kPrimaryColor,fontWeight: FontWeight.bold
-                                          )
-                                         ),
-                                              ]
+                                              ),
+                          color:kPrimaryColor,
+                           child: Text("Add to Cart",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize:12)),),
+                                             ],
                                            )
-                                                                             
-                                           ),
-                                       
-                                       Row(
-                                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                         
-                                         children: [
-                                           Text("\$2.74",
-                                           style: TextStyle(color: kPrimaryColor,fontWeight: FontWeight.bold,
-                                           fontSize: 18
-                                           ),
-                                           ),
-
-                                           SizedBox(width: getProportionateScreenWidth(88),),
-
-                                           FlatButton(onPressed: (
-                                        ){
-                                          // if(Mformkey.currentState.validate()){
-                                          // Mformkey.currentState.save();
-                                         //}
-                                         
-                                        },
-                                        height:28 ,
-                                         
-                                        shape: RoundedRectangleBorder(
-                                          borderRadius: BorderRadius.circular(16)
+                                           
                                           
-                                          ),
-                      color:kPrimaryColor,
-                       child: Text("Add to Cart",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize:12)),),
-                                         ],
-                                       )
-                                       
-                                      
-                                       
-                                       
-                               ],
-                             ),
-                          ),
-
+                                           
+                                           
+                                   ],
+                                 ),
+                              ),
+                                                          
+                              
+                             
                           
-                         
-                      
-                 
-              
+                     
+                  
+                ],
+              ),
+              Positioned(
+                
+                                                                        
+                                                                        top: -16,
+                                                                        right: -12,
+                                                                        child: IconButton(icon: Icon(Icons.clear,color:kPrimaryColor), onPressed:(){
+                                                            
+                                                         setState(() {
+                                                             widget.product.isFavourite=false;
+                                                             favProducts.remove(widget.product);
+                                                             print('hellow');
+                                                             
+                                                         });
+                                                       }),
+                                                          )
             ],
           ),
         )),

@@ -24,12 +24,12 @@ class IconBtnwithCounter extends StatelessWidget {
         overflow: Overflow.visible,
         children: <Widget>[
           Container(
-            padding: EdgeInsets.all(getProportionateScreenWidth(9)),
+            padding: EdgeInsets.all(getProportionateScreenWidth(6)),
             width: getProportionateScreenWidth(40),
             height: getProportionateScreenWidth(40),
             decoration: BoxDecoration(
-                color: Colors.deepOrangeAccent.withOpacity(0.6),
-                shape: BoxShape.circle,
+                //color: Colors.deepOrangeAccent.withOpacity(0.6),
+               // shape: BoxShape.circle,
                 
             ),
             child: SvgPicture.asset(svgsrc,color: Colors.white,),
