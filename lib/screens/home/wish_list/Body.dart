@@ -7,13 +7,11 @@ import 'package:hexcolor/hexcolor.dart';
 import '../../../constant.dart';
 import '../../../size_config.dart';
 class Body extends StatelessWidget {
-  
+ 
   @override
   
   Widget build(BuildContext context) {
     return SafeArea(
-
-      
         child: ListView.builder(
           itemCount: favProducts.length,
           itemBuilder:(BuildContext context,int index)=> 
@@ -53,6 +51,7 @@ class BigCard extends StatelessWidget {
   
   @override
   Widget build(BuildContext context) {
+     
     return WishListCart(product: lp[index]);
   }
 }
@@ -208,15 +207,27 @@ class _WishListCartState extends State<WishListCart> {
 
                                                FlatButton(onPressed: (
                                             ){
-                                              // if(Mformkey.currentState.validate()){
-                                              // Mformkey.currentState.save();
-                                             //}
+                                              setState(() {
+
+                                          
+                                                if (!(productsCart.contains(widget.product))){
+                                                  
+
+                                                Scaffold.of(context).showSnackBar(SnackBar(content: Text('Product added to your cart')));
+                                                productsCart.add(widget.product);
+                                                numOfProductInCart+=1;
+                                              
+                                              }else{
+
+                                                Scaffold.of(context).showSnackBar(SnackBar(content:Text('Product is already added to your cart')));
+                                                
+                                              }
+                                              });
                                              
                                             },
                                             height:28 ,
-                                             
                                             shape: RoundedRectangleBorder(
-                                              borderRadius: BorderRadius.circular(16)
+                                            borderRadius: BorderRadius.circular(16)
                                               
                                               ),
                           color:kPrimaryColor,

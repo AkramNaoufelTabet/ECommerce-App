@@ -1,22 +1,20 @@
-
-import 'package:ecommerce_app/screens/home/wish_list/Body.dart';
+import 'package:ecommerce_app/screens/home/Cart/Body.dart';
 import 'package:flutter/material.dart';
 
 import '../../../constant.dart';
-class WishList extends StatelessWidget {
-  
-  
-  
+class Mycart extends StatelessWidget {
+  static String routename="/MyCart";
   @override
-  static String routename ="/wishList";
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
         backgroundColor: kPrimaryColor,
-        title: Text("Wish list",style: TextStyle(fontWeight: FontWeight.bold,color: Colors.white),),
+        title: Text("My Cart",style: TextStyle(fontWeight: FontWeight.bold,color: Colors.white),),
       ),
       body: Body(),
+
+      
     );
   }
 }

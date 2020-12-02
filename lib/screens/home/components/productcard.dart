@@ -114,6 +114,7 @@ class FavoriteIcon extends StatefulWidget {
 
 class _FavoriteIconState extends State<FavoriteIcon> {
   
+  
   @override
   Widget build(BuildContext context) {
     return IconButton(  icon: widget.product.isFavourite ? Icon(Icons.favorite,color: kPrimaryColor,) : 

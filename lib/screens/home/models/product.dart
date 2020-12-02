@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 class Product {
   final int id;
+  int amount;
   final String title, description;
   final List<String> images;
   final List<Color> colors;
@@ -11,6 +12,7 @@ class Product {
 
   Product({
     @required this.id,
+    this.amount=1,
     @required this.images,
     @required this.colors,
     this.rating = 0.0,
@@ -26,6 +28,8 @@ List<Product> favProducts=[
 
  
 ];
+List<Product> productsCart=[];
+int numOfProductInCart=0;
 
 // Our demo Products
 
