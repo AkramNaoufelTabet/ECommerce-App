@@ -3,12 +3,15 @@ import 'package:flutter/material.dart';
 class Product {
   final int id;
   int amount;
+  double priceAfterReduction;
   final String title, description;
   final List<String> images;
   final List<Color> colors;
   final double rating, price,reduction;
   final bool  isPopular;
   bool isFavourite;
+  
+  
 
   Product({
     @required this.id,
@@ -19,17 +22,23 @@ class Product {
     this.isFavourite = false,
     this.isPopular = false,
     @required this.title,
+    
     @required this.price,
+    this.priceAfterReduction,
      this.reduction,
     @required this.description,
   });
 }
+
+
 List<Product> favProducts=[
 
  
 ];
 List<Product> productsCart=[];
 int numOfProductInCart=0;
+double totalArticles=0;
+
 
 // Our demo Products
 
@@ -50,6 +59,10 @@ List<Product> demoProducts = [
     ],
     title: "Wirelless earphone",
     price: 16.74,
+    priceAfterReduction: 16.74,
+
+
+
     reduction: 16,
     description: description,
     rating: 4.8,
@@ -69,6 +82,7 @@ List<Product> demoProducts = [
     ],
     title: "Backpack laptop",
     price: 50.55,
+    priceAfterReduction: 50.55,
     description: description,
     reduction: 0,
     rating: 4.1,
@@ -87,6 +101,7 @@ List<Product> demoProducts = [
     ],
     title: "Apple new watch 2020",
     price: 81.55,
+    priceAfterReduction: 81.55,
     reduction: 40,
     description: description,
     rating: 4.1,
