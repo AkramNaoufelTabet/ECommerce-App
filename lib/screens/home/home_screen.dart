@@ -1,14 +1,12 @@
 import 'package:ecommerce_app/constant.dart';
 import 'package:ecommerce_app/screens/home/Cart/MyCart.dart';
 import 'package:ecommerce_app/screens/home/components/body.dart';
-import 'package:ecommerce_app/screens/home/components/navBar.dart';
 import 'package:ecommerce_app/screens/home/models/product.dart';
 import 'package:ecommerce_app/screens/home/wish_list/wish_list.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
 import '../../size_config.dart';
-import 'components/Homeheader.dart';
 class HomeScreen extends StatefulWidget {
   @override
   
@@ -21,18 +19,47 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   
   
-   final List<Widget> _children = [
-      Body(),
-      WishList(),
-      Mycart(),
-      Body(),
-    ];
+
+    void update(Product p,BuildContext context){
+                           setState(() {
+
+                                          
+                                                if (!(productsCart.contains(p))){
+                                                  
+
+                                                Scaffold.of(context).showSnackBar(SnackBar(content: Text('Product added to your cart')));
+                                                productsCart.add(p);
+                                                numOfProductInCart+=1;
+                                              
+                                              }else{
+
+                                                Scaffold.of(context).showSnackBar(SnackBar(content:Text('Product is already added to your cart')));
+                                                
+                                              }
+                                              });
+    }
+     void remove(Product p){
+  setState(() {
+                                                             p.isFavourite=false;
+                                                             favProducts.remove(p);
+                                                             productsCart.remove(p);
+                                                             numOfProductInCart-=1;
+                                                             
+                                                         });
+
+ }
+   
+   
 
     
-   //int numOfItems=3;
   int _currentindex=0;
   Widget build(BuildContext context) {
-   
+   final List<Widget> _children = [
+      Body(),
+      WishList(function1:update,function2: remove),
+      Mycart(function1: remove),
+      Body(),
+    ];
     return Scaffold(
       
       backgroundColor: Colors.white,
@@ -73,6 +100,7 @@ class _HomeScreenState extends State<HomeScreen> {
              SvgPicture.asset("assets/icons/Cart Icon.svg",width: getProportionateScreenWidth(30),
              height:getProportionateScreenWidth(30) ,color: kSecondaryColor,),
                if(numOfProductInCart!=0)
+
            Positioned(
              top: -5,
              right: -2,

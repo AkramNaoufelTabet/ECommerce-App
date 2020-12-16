@@ -7,13 +7,17 @@ import 'package:hexcolor/hexcolor.dart';
 import '../../../size_config.dart';
 import 'orderSum.dart';
 class Body extends StatefulWidget {
- 
+ final Function remove;
+ Body({
+   @required this.remove,
+ });
   @override
   _BodyState createState() => _BodyState();
 }
 
 
 class _BodyState extends State<Body> {
+  
   
 bool checked1=false;
 bool checked2=true;
@@ -22,7 +26,7 @@ String adresse="Cooperative El Khiam,El Eulma,Sétif";
 TextEditingController adressController;
 
 double allToPay;
-double totalP;
+
 
 
     
@@ -37,11 +41,29 @@ double totalP;
   return double.parse((totalP).toStringAsFixed(2));
 }
 
- void initState() {
-    super.initState();
-    adressController = TextEditingController(text: adresse);
-  }
+ void decrement(Product p ){
+     setState(() {
+                                    
+                                    if(p.amount!=1)
+                                    p.amount-=1;
+                                    
+                                    
+                                  });
+ }
+ void increment(Product p){
+    setState(() {
+                                    p.amount+=1;
+                                    
+                                    
+                                  });
+ }
+ 
 
+@override
+  void didChangeDependencies() {
+    adressController = TextEditingController(text: adresse);
+    super.didChangeDependencies();
+  }
   void dispose() {
     adressController.dispose();
     super.dispose();
@@ -49,6 +71,7 @@ double totalP;
 
   @override
   Widget build(BuildContext context) {
+       allToPay=double.parse((calculeTotalP()+shippingC).toStringAsFixed(2));
 
   Future<void> _showMyDialog(String adr) async {
   return showDialog<void>(
@@ -88,13 +111,9 @@ double totalP;
     },
   );
 }
-  setState(() {
+
       
-        totalArticles=calculeTotalP();
-       allToPay=double.parse((totalArticles+shippingC).toStringAsFixed(2));
-       print(totalArticles);
-       
-    });
+    
 
   
     return SafeArea(
@@ -121,7 +140,10 @@ double totalP;
                           
                           height: 230,
                           child: Row(children: [
-                ...List.generate(productsCart.length, (index) =>ProductCart(product: productsCart[index],) )
+                ...List.generate(productsCart.length, (index) =>ProductCart(product: productsCart[index],remove: widget.remove,
+                increment: increment,decrement: decrement,
+                
+                ) )
               ],),
                         ),
             )      
@@ -319,7 +341,7 @@ SizedBox(height: 0,),
                ),
 
                 
-               OrderSum(totalP: totalArticles, shippingC: shippingC, allToPay: allToPay),
+               OrderSum(totalP: calculeTotalP(), shippingC: shippingC, allToPay: allToPay),
                
 
 

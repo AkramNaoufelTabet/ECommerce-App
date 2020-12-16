@@ -6,8 +6,25 @@ import 'package:hexcolor/hexcolor.dart';
 
 import '../../../constant.dart';
 import '../../../size_config.dart';
-class Body extends StatelessWidget {
+class Body extends StatefulWidget {
+const Body({
+  @required this.updateBottomBar,
+  @required this.remove,
+
+}
+);
+final Function updateBottomBar;
+final Function remove; 
+  @override
+  _BodyState createState() => _BodyState();
+}
+
+class _BodyState extends State<Body> {
+   
+
  
+ 
+
   @override
   
   Widget build(BuildContext context) {
@@ -15,7 +32,7 @@ class Body extends StatelessWidget {
         child: ListView.builder(
           itemCount: favProducts.length,
           itemBuilder:(BuildContext context,int index)=> 
-           BigCard(title: "null", press:(){},  lp: favProducts,index: index,)  
+           BigCard(update: widget.updateBottomBar, remove: widget.remove,  lp: favProducts,index: index,)  
            
           
           
@@ -37,22 +54,24 @@ class Body extends StatelessWidget {
 class BigCard extends StatelessWidget {
   const BigCard({
     Key key, 
-    @required this.title, 
-    @required this.press,
+    @required this.update, 
+    
+    @required this.remove,
      
     @required this.index,
     @required this.lp,
   }) : super(key: key);
-  final String title;
-  final GestureTapCallback press;
+  final Function update;
+  
   final List<Product> lp;
   final int index;
+  final Function remove;
   
   
   @override
   Widget build(BuildContext context) {
      
-    return WishListCart(product: lp[index]);
+    return WishListCart(product: lp[index],remove: remove,update: update,);
   }
 }
 
@@ -60,9 +79,13 @@ class WishListCart extends StatefulWidget {
   const WishListCart({
     Key key,
     @required this.product,
+    @required this.remove,
+    @required this.update,
   }) : super(key: key);
 
   final Product product;
+  final Function remove;
+  final Function update;
 
   @override
   _WishListCartState createState() => _WishListCartState();
@@ -205,26 +228,7 @@ class _WishListCartState extends State<WishListCart> {
 
                                                SizedBox(width: getProportionateScreenWidth(80),),
 
-                                               FlatButton(onPressed: (
-                                            ){
-                                              setState(() {
-
-                                          
-                                                if (!(productsCart.contains(widget.product))){
-                                                  
-
-                                                Scaffold.of(context).showSnackBar(SnackBar(content: Text('Product added to your cart')));
-                                                productsCart.add(widget.product);
-                                                numOfProductInCart+=1;
-                                              
-                                              }else{
-
-                                                Scaffold.of(context).showSnackBar(SnackBar(content:Text('Product is already added to your cart')));
-                                                
-                                              }
-                                              });
-                                             
-                                            },
+                                               FlatButton(onPressed:()=>widget.update(widget.product,context),
                                             height:28 ,
                                             shape: RoundedRectangleBorder(
                                             borderRadius: BorderRadius.circular(16)
@@ -254,15 +258,7 @@ class _WishListCartState extends State<WishListCart> {
                                                                         
                                                                         top: -16,
                                                                         right: -12,
-                                                                        child: IconButton(icon: Icon(Icons.clear,color:kPrimaryColor), onPressed:(){
-                                                            
-                                                         setState(() {
-                                                             widget.product.isFavourite=false;
-                                                             favProducts.remove(widget.product);
-                                                             print('hellow');
-                                                             
-                                                         });
-                                                       }),
+                                                                        child: IconButton(icon: Icon(Icons.clear,color:kPrimaryColor), onPressed:()=> widget.remove(widget.product)),
                                                           )
             ],
           ),

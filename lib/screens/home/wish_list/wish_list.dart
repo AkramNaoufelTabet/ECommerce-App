@@ -4,8 +4,15 @@ import 'package:flutter/material.dart';
 
 import '../../../constant.dart';
 class WishList extends StatelessWidget {
-  
-  
+  const WishList({
+     Key key,
+ this.function1,
+ this.function2,
+   }
+    
+  ):super(key: key);
+  final Function function1;
+  final Function function2;
   
   @override
   static String routename ="/wishList";
@@ -16,7 +23,7 @@ class WishList extends StatelessWidget {
         backgroundColor: kPrimaryColor,
         title: Text("Wish list",style: TextStyle(fontWeight: FontWeight.bold,color: Colors.white),),
       ),
-      body: Body(),
+      body: Body(updateBottomBar: function1,remove: function2,),
     );
   }
 }

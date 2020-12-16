@@ -3,7 +3,10 @@ import 'package:flutter/material.dart';
 
 import '../../../constant.dart';
 class Mycart extends StatelessWidget {
+ Mycart({ this.function1});
   static String routename="/MyCart";
+    final Function function1;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -12,7 +15,7 @@ class Mycart extends StatelessWidget {
         backgroundColor: kPrimaryColor,
         title: Text("My Cart",style: TextStyle(fontWeight: FontWeight.bold,color: Colors.white),),
       ),
-      body: Body(),
+      body: Body(remove: function1,),
 
       
     );

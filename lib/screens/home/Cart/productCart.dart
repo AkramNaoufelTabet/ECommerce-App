@@ -11,6 +11,10 @@ import '../../../size_config.dart';
 class ProductCart extends StatefulWidget {
    ProductCart({
     Key key,
+   @required this.remove,
+    
+   this.increment,
+  this.decrement,
     @required this.product,
     
  
@@ -20,37 +24,26 @@ class ProductCart extends StatefulWidget {
 
  
 
-  
+  final Function remove;
   final Product product;
+  final Function increment;
+  final Function decrement;
   
     
-   double totalPrice; 
-   double allToPay;
   @override
   _ProductCartState createState() => _ProductCartState();
 }
 
 class _ProductCartState extends State<ProductCart> {
   
-  
-  
+     double totalPrice; 
+
+
   @override
   Widget build(BuildContext context) {
-    widget.totalPrice=double.parse((widget.product.price-widget.product.price*widget.product.reduction/100).toStringAsFixed(2));
-double calculeTotalP (){
-  double totalP=0;
-  for(var x=0 ; x<productsCart.length;x++){
-      totalP+=(productsCart[x].price-productsCart[x].price*productsCart[x].reduction/100)*productsCart[x].amount;
-      
-  }
+      totalPrice=widget.product.price-widget.product.price*widget.product.reduction/100;
 
-  return double.parse((totalP).toStringAsFixed(2));
-}
-
-  setState(() {
-    totalArticles=calculeTotalP();
-  });
-
+  
     return  Padding(
       padding:  EdgeInsets.only(left:8.0,right: 8),
       child: Container(
@@ -111,10 +104,7 @@ double calculeTotalP (){
                                                   top: -18,
                                                   right: -20,
                                                   
-                                                  child: IconButton(icon: Icon(Icons.clear,color:kPrimaryColor), onPressed:(){
-                                                                              
-                                                                         
-                                                                         }),
+                                                  child: IconButton(icon: Icon(Icons.clear,color:kPrimaryColor), onPressed:()=>widget.remove(widget.product)),
                                                 ),
                                               ],
                                             ),
@@ -173,15 +163,7 @@ double calculeTotalP (){
                           
                           children: [
                               InkWell(
-                                onTap: (){
-                                  setState(() {
-                                    
-                                    if(widget.product.amount!=1)
-                                    widget.product.amount-=1;
-                                    totalArticles=calculeTotalP();
-                                    
-                                  });
-                                },
+                                onTap: ()=> widget.decrement(widget.product),
                                                               child: Container(
                                   width: getProportionateScreenWidth(24),
                                   height:getProportionateScreenWidth(22) ,
@@ -211,13 +193,7 @@ double calculeTotalP (){
                      ),
                    ),
                      InkWell(
-                       onTap: (){
-                         setState(() {
-                                    widget.product.amount+=1;
-                                    totalArticles=calculeTotalP();
-                                    
-                                  });
-                       },
+                      onTap: ()=> widget.increment(widget.product),
                                             child: Container(
                                   width: getProportionateScreenWidth(24),
                                   height:getProportionateScreenWidth(22) ,
@@ -250,7 +226,7 @@ double calculeTotalP (){
                             style: TextStyle(color: kPrimaryColor,fontWeight: FontWeight.bold),
                             children: [
                               TextSpan(
-                                text:"\$${double.parse((widget.totalPrice*widget.product.amount).toStringAsFixed(2))}",
+                                text:"\$${double.parse((totalPrice*widget.product.amount).toStringAsFixed(2))}",
                                 
                                 style: TextStyle(color: kPrimaryColor,fontWeight: FontWeight.bold),
                               )

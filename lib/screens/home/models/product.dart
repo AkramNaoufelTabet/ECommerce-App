@@ -37,7 +37,6 @@ List<Product> favProducts=[
 ];
 List<Product> productsCart=[];
 int numOfProductInCart=0;
-double totalArticles=0;
 
 
 // Our demo Products
